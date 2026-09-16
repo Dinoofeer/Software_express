@@ -1,24 +1,32 @@
 create database if not exists torneo_videojuegos;
 use torneo_videojuegos;
 
--- RF1. REGISTRAR JUGADORES
-CREATE TABLE jugadores (
+
+-- 1. Tabla de Jugadores 
+CREATE TABLE IF NOT EXISTS jugadores (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(50) NOT NULL,
+    nombre VARCHAR(100) NOT NULL,
     gamertag VARCHAR(50) NOT NULL UNIQUE,
-    correo VARCHAR(50) NOT NULL,
+    correo VARCHAR(100) NOT NULL UNIQUE,
     fecha_registro DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
--- RF02. Registrar videojuegos 
-CREATE TABLE videojuegos (
-	id INT AUTO_INCREMENT PRIMARY KEY,
-	nombre  VARCHAR(50) NOT NULL UNIQUE,
-	genero  VARCHAR(50) NOT NULL
+-- 2. Tabla de Géneros 
+CREATE TABLE IF NOT EXISTS generos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL UNIQUE
 );
 
--- RF03. Registrar puntuaciones 
-CREATE TABLE puntuaciones (
+-- 3. Tabla de videojuegos 
+CREATE TABLE IF NOT EXISTS videojuegos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL UNIQUE,
+    genero_id INT NOT NULL,
+    FOREIGN KEY (genero_id) REFERENCES generos(id) ON DELETE RESTRICT
+);
+
+-- 4. Tabla de puntuaciones 
+CREATE TABLE IF NOT EXISTS puntuaciones (
     id INT AUTO_INCREMENT PRIMARY KEY,
     jugador_id INT NOT NULL,
     videojuego_id INT NOT NULL,
@@ -27,3 +35,4 @@ CREATE TABLE puntuaciones (
     FOREIGN KEY (jugador_id) REFERENCES jugadores(id) ON DELETE CASCADE,
     FOREIGN KEY (videojuego_id) REFERENCES videojuegos(id) ON DELETE CASCADE
 );
+
