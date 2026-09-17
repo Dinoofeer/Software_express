@@ -62,4 +62,30 @@ table {
     background: #fff;
     margin-bottom: 20px;
 }
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
 
+th {
+    background-color: #343a40;
+    color: white;
+}
+
+.alert {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    display: none;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+}

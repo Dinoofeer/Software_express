@@ -11,7 +11,14 @@
     <h1>Sistema de Torneo de Videojuegos</h1>
     <div id="mensaje" class="alert"></div>
 
-  //1
+  //
+  <h2>Estadísticas Generales</h2>
+    <div class="grid">
+        <div class="card"><h3 id="stat-jugadores">0</h3><p>Total Jugadores</p></div>
+        <div class="card"><h3 id="stat-juegos">0</h3><p>Total Videojuegos</p></div>
+        <div class="card"><h3 id="stat-puntuaciones">0</h3><p>Puntuaciones Registradas</p></div>
+        <div class="card"><h3 id="stat-promedio">0</h3><p>Puntuación Promedio</p></div>
+    </div>
     
 
     <div class="grid">
@@ -32,6 +39,40 @@
     </div>
 
    //
+    <!-- RF03 & RF05: Registro de Puntuación -->
+    <form id="form-puntuacion">
+        <h3>Registrar Puntuación (RF05)</h3>
+        <select id="p-jugador" required><option value="">Seleccione Jugador</option></select>
+        <select id="p-videojuego" required><option value="">Seleccione Videojuego</option></select>
+        <input type="number" id="p-puntuacion" min="0" placeholder="Puntuación (no negativa)" required>
+        <button type="submit">Guardar Puntuación</button>
+    </form>
+
+    <h2>Lista de Jugadores (RF04)</h2>
+    <input type="text" id="buscar-jugador" placeholder="Buscar por Nombre o Gamertag (RF07)...">
+    <table>
+        <thead>
+            <tr>
+                <th>GAMERTAG</th>
+                <th>CORREO</th>
+                <th>FECHA DE REGISTRO</th>
+            </tr>
+        </thead>
+        <tbody id="tabla-jugadores"></tbody>
+    </table>
+
+    <h2>Clasificación / Ranking (RF06)</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>POSICIÓN</th>
+                <th>JUGADOR</th>
+                <th>VIDEOJUEGO</th>
+                <th>PUNTUACIÓN</th>
+            </tr>
+        </thead>
+        <tbody id="tabla-ranking"></tbody>
+    </table>
 
     <script src="app.js"></script>
 </body>
