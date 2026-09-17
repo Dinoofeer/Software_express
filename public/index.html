@@ -3,76 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Torneo de Videojuegos - Software Express</title>
+    <title>Torneo de Videojuegos - Software Express IDYGS103</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <h1>Sistema de Torneo de Videojuegos</h1>
+    <header class="main-header">
+        <h1>Sistema de Torneo de Videojuegos</h1>
+    </header>
+
     <div id="mensaje" class="alert"></div>
 
-  //
-  <h2>Estadísticas Generales</h2>
-    <div class="grid">
-        <div class="card"><h3 id="stat-jugadores">0</h3><p>Total Jugadores</p></div>
-        <div class="card"><h3 id="stat-juegos">0</h3><p>Total Videojuegos</p></div>
-        <div class="card"><h3 id="stat-puntuaciones">0</h3><p>Puntuaciones Registradas</p></div>
-        <div class="card"><h3 id="stat-promedio">0</h3><p>Puntuación Promedio</p></div>
-    </div>
+    <section class="section-container">
+        <h2>Estadísticas Generales</h2>
+        <div class="grid-stats">
+            <div class="card-stat"><h3 id="stat-jugadores">0</h3><p>Total Jugadores</p></div>
+            <div class="card-stat"><h3 id="stat-juegos">0</h3><p>Total Videojuegos</p></div>
+            <div class="card-stat"><h3 id="stat-puntuaciones">0</h3><p>Puntuaciones Registradas</p></div>
+            <div class="card-stat"><h3 id="stat-promedio">0</h3><p>Puntuación Promedio</p></div>
+        </div>
+    </section>
+
     
+    <section class="section-container">
+        <h2>Gestión de Registros</h2>
+        <div class="grid-forms">
+          
+            <form id="form-jugador" class="form-card">
+                <h3>Registrar Jugador</h3>
+                <input type="text" id="j-nombre" placeholder="Nombre completo" required>
+                <input type="text" id="j-gamertag" placeholder="Gamertag / Alias" required>
+                <input type="email" id="j-correo" placeholder="Correo electrónico" required>
+                <div class="btn-container">
+                    <button type="submit" class="btn-custom">Guardar Jugador</button>
+                </div>
+            </form>
 
-    <div class="grid">
-        <form id="form-jugador">
-            <h3>Registrar Jugador</h3>
-            <input type="text" id="j-nombre" placeholder="Nombre completo" required>
-            <input type="text" id="j-gamertag" placeholder="Gamertag / Alias" required>
-            <input type="email" id="j-correo" placeholder="Correo electrónico" required>
-            <button type="submit">Guardar Jugador</button>
-        </form>
+            <form id="form-videojuego" class="form-card">
+                <h3>Registrar Videojuego</h3>
+                <input type="text" id="v-nombre" placeholder="Nombre del juego" required>
+                <input type="text" id="v-genero" placeholder="Género" required>
+                <div class="btn-container">
+                    <button type="submit" class="btn-custom">Guardar Videojuego</button>
+                </div>
+            </form>
 
-        <form id="form-videojuego">
-            <h3>Registrar Videojuego</h3>
-            <input type="text" id="v-nombre" placeholder="Nombre del juego" required>
-            <input type="text" id="v-genero" placeholder="Género" required>
-            <button type="submit">Guardar Videojuego</button>
-        </form>
-    </div>
+            
+            <form id="form-puntuacion" class="form-card">
+                <h3>Registrar Puntuación</h3>
+                <select id="p-jugador" required><option value="">Seleccione Jugador</option></select>
+                <select id="p-videojuego" required><option value="">Seleccione Videojuego</option></select>
+                <input type="number" id="p-puntuacion" min="0" placeholder="Puntuación (≥ 0)" required>
+                <div class="btn-container">
+                    <button type="submit" class="btn-custom">Guardar Puntuación</button>
+                </div>
+            </form>
+        </div>
+    </section>
 
-   //
-    <!-- RF03 & RF05: Registro de Puntuación -->
-    <form id="form-puntuacion">
-        <h3>Registrar Puntuación (RF05)</h3>
-        <select id="p-jugador" required><option value="">Seleccione Jugador</option></select>
-        <select id="p-videojuego" required><option value="">Seleccione Videojuego</option></select>
-        <input type="number" id="p-puntuacion" min="0" placeholder="Puntuación (no negativa)" required>
-        <button type="submit">Guardar Puntuación</button>
-    </form>
+   
+    <section class="grid-tables">
+        
+        <div class="table-card">
+            <div class="table-header-box">
+                <h2>Lista de Jugadores</h2>
+                <input type="text" id="buscar-jugador" class="input-search" placeholder="Buscar jugador por Nombre o Gamertag...">
+            </div>
+            <div class="table-scroll">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>NOMBRE</th>
+                            <th>GAMERTAG</th>
+                            <th>CORREO</th>
+                            <th>FECHA</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-jugadores"></tbody>
+                </table>
+            </div>
+        </div>
 
-    <h2>Lista de Jugadores (RF04)</h2>
-    <input type="text" id="buscar-jugador" placeholder="Buscar por Nombre o Gamertag (RF07)...">
-    <table>
-        <thead>
-            <tr>
-                <th>GAMERTAG</th>
-                <th>CORREO</th>
-                <th>FECHA DE REGISTRO</th>
-            </tr>
-        </thead>
-        <tbody id="tabla-jugadores"></tbody>
-    </table>
-
-    <h2>Clasificación / Ranking (RF06)</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>POSICIÓN</th>
-                <th>JUGADOR</th>
-                <th>VIDEOJUEGO</th>
-                <th>PUNTUACIÓN</th>
-            </tr>
-        </thead>
-        <tbody id="tabla-ranking"></tbody>
-    </table>
+        <div class="table-card">
+            <div class="table-header-box">
+                <h2>Clasificación / Ranking</h2>
+                <input type="text" id="buscar-ranking" class="input-search" placeholder="Filtrar ranking...">
+            </div>
+            <div class="table-scroll">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>POS</th>
+                            <th>JUGADOR</th>
+                            <th>VIDEOJUEGO</th>
+                            <th>PUNTOS</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-ranking"></tbody>
+                </table>
+            </div>
+        </div>
+    </section>
 
     <script src="app.js"></script>
 </body>
