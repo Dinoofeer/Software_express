@@ -11,6 +11,8 @@ CREATE TABLE IF NOT EXISTS jugadores (
     fecha_registro DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
+ALTER TABLE jugadores RENAME COLUMN correo TO email;
+
 -- 2. Tabla de Géneros 
 CREATE TABLE IF NOT EXISTS generos (
     id INT AUTO_INCREMENT PRIMARY KEY,
